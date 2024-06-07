@@ -338,6 +338,10 @@ public class MainActivity extends AppCompatActivity
     public void getFgLib(){
         File file = new File(fgLibFileName);
         if (!file.exists()) {
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, com.wyywn.fgcam.Settings.class);
+            startActivity(intent);
+            Toast.makeText(context, "Please add at least a lib", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
