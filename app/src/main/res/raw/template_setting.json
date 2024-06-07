@@ -1,0 +1,50 @@
+[
+  {
+    "name": "overflowExtent",
+    "defaultValue": 0.2,
+    "valueType": "double",
+    "description": "限制立绘超出程度"
+  },
+  {
+    "name": "timeWatermark",
+    "defaultValue": false,
+    "valueType": "boolean",
+    "description": "时间水印"
+  },
+  {
+    "name": "timeWatermarkFormat",
+    "defaultValue": "yyyy/MM/dd HH:mm:ss",
+    "valueType": "string",
+    "description": "时间水印格式"
+  },
+  {
+    "name": "photoNameFormat",
+    "defaultValue": "yyyyMMdd_HHmmss",
+    "valueType": "string",
+    "description": "图片文件名格式"
+  },
+  {
+    "name": "autoLight",
+    "defaultValue": false,
+    "valueType": "boolean",
+    "description": "根据光线自动调整立绘明暗"
+  },
+  {
+    "name": "gps",
+    "defaultValue": true,
+    "valueType": "boolean",
+    "description": "在图片中添加GPS信息"
+  },
+  {
+    "name": "exif",
+    "defaultValue": true,
+    "valueType": "boolean",
+    "description": "在图片中保存相机EXIF信息"
+  },
+  {
+    "name": "saveOrigin",
+    "defaultValue": false,
+    "valueType": "boolean",
+    "description": "保存原始照片"
+  }
+]
