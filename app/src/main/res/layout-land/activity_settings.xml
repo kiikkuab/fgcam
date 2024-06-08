@@ -11,7 +11,7 @@
         android:id="@+id/myToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/cardview_dark_background"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

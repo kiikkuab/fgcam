@@ -8,6 +8,7 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.camera.view.PreviewView;
@@ -159,8 +160,6 @@ public class MainActivity extends AppCompatActivity
         envFileName = dataPath + "/env.json";
         settingFileName = dataPath + "/setting.json";
 
-        loadSetting();
-
         /*DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenWidth = displayMetrics.widthPixels;
@@ -173,8 +172,16 @@ public class MainActivity extends AppCompatActivity
         screenHeight = outPoint.y;
 
         seekBar = findViewById(R.id.seekBar);
-        FrameLayout.LayoutParams seekBarLayout = (FrameLayout.LayoutParams) seekBar.getLayoutParams();
-        seekBarLayout.setMargins(40 - seekBarLayout.width / 2,(int)(screenWidth / 0.75 / 2),0,0);
+        ConstraintLayout.LayoutParams seekBarLayout = (ConstraintLayout.LayoutParams) seekBar.getLayoutParams();
+        //seekBarLayout.setMargins(40 - seekBarLayout.width / 2,(int)(screenWidth / 0.75 / 2));
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            seekBarLayout.rightMargin = 23 - seekBarLayout.width / 2;
+            seekBarLayout.bottomMargin = seekBarLayout.width / 2 - 40;
+        }
+
+        loadSetting();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (!Environment.isExternalStorageManager()) {
@@ -232,7 +239,8 @@ public class MainActivity extends AppCompatActivity
 
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        seekBar.bringToFront();
+                        /*seekBar = findViewById(R.id.seekBar);
+                        seekBar.bringToFront();*/
                         switch (event.getPointerCount()){
                             case 1:
                                 float x = event.getX();
@@ -391,10 +399,16 @@ public class MainActivity extends AppCompatActivity
             facing = envObj.getInt("facing");
 
             currentFgLibPath = envObj.getString("currentFgLibPath");
-            display(currentFgLibPath);
+            file = new File(envFileName);
+            if (file.exists()) {
+                display(currentFgLibPath);
+            }
 
             img_path = envObj.getString("currentFgPath");
-            clickFg(img_path);
+            file = new File(img_path);
+            if (file.exists()) {
+                clickFg(img_path);
+            }
 
             JSONArray marginPointjsonArray = new JSONArray(envObj.getString("marginPoint"));
             float[] marginPointfloatArray = new float[marginPointjsonArray.length()];
@@ -707,7 +721,7 @@ public class MainActivity extends AppCompatActivity
 
     private File getOutputDirectory() {
         File mediaDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-        File outputDir = new File(mediaDir, "stickcam");
+        File outputDir = new File(mediaDir, "fgcam");
 
         if (!outputDir.exists()) {
             outputDir.mkdirs();

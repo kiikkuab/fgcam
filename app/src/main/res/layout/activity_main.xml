@@ -14,18 +14,19 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomLayer"
         app:layout_constraintRight_toRightOf="parent"/>-->
 
+
+
     <FrameLayout
         android:id="@+id/previewContainer"
-        android:layout_width="match_parent"
-        android:layout_height="1440px"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingRight="-10000px">
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_height="match_parent"
+        android:layout_width="1440px">
 
         <androidx.camera.view.PreviewView
             android:id="@+id/previewView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintLeft_toRightOf="parent">
         </androidx.camera.view.PreviewView>
 
         <ImageView
@@ -34,29 +35,29 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="0px"
             android:layout_marginTop="0px"
-            android:padding="0dp"
             app:srcCompat="@drawable/ic_launcher_foreground"
             tools:srcCompat="@drawable/ic_launcher_foreground" />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_height="wrap_content"
-            android:layout_width="200dp"
-            android:stateListAnimator="@null"
-            android:max="100"
-            android:min="20"
-            android:progress="100"
-            android:secondaryProgress="100"
-            android:rotation="-90"/>
     </FrameLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        app:layout_constraintBottom_toTopOf="@+id/centerLayer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@color/grey_transparent"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:max="100"
+        android:min="20"
+        android:progress="100"
+        android:secondaryProgress="100"/>
 
     <LinearLayout
         android:id="@+id/centerLayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:background="@color/grey_transparent"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fgLibRecycler"
@@ -65,62 +66,62 @@
             android:layout_height="200px"
             android:layout_width="wrap_content"
             android:orientation="horizontal"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fgLibRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="500px"
+            android:orientation="horizontal"/>
+
+        <LinearLayout
+            android:id="@+id/bottomLayer"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:id="@+id/switchCameraButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onSwitchCameraButtonClick"
+                android:text="SwitchCam"/>
+
+            <Button
+                android:id="@+id/takePhotoButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onTakePhotoButtonClick"
+                android:text=" Shot " />
+
+            <Button
+                android:id="@+id/changeAspectRatioButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:maxWidth="2dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onChangeAspectRatioButtonClick"
+                android:text="4/3" />
+            <Button
+                android:id="@+id/settingButton"
+                style="@style/Widget.Material3.FloatingActionButton.Primary"
+                android:onClick="onSettingButtonClick"
+                android:layout_width="wrap_content"
+                android:maxWidth="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Setting" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        app:layout_constraintBottom_toTopOf="@+id/bottomLayer"
-        app:layout_constraintStart_toEndOf="@+id/centerLayer"
-        android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:orientation="horizontal"
-        android:background="@color/grey_transparent"/>
 
-    <LinearLayout
-        android:id="@+id/bottomLayer"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:orientation="horizontal"
-        android:background="@color/grey_transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/switchCameraButton"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onSwitchCameraButtonClick"
-            android:text="SwitchCam"/>
 
-        <Button
-            android:id="@+id/takePhotoButton"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onTakePhotoButtonClick"
-            android:text=" Shot " />
-
-        <Button
-            android:id="@+id/changeAspectRatioButton"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:maxWidth="2dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onChangeAspectRatioButtonClick"
-            android:text="4/3" />
-        <Button
-            android:id="@+id/settingButton"
-            style="@style/Widget.Material3.FloatingActionButton.Primary"
-            android:onClick="onSettingButtonClick"
-            android:layout_width="wrap_content"
-            android:maxWidth="5dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Setting" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

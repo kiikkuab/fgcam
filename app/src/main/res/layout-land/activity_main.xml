@@ -26,22 +26,24 @@
             android:layout_marginTop="0px"
             app:srcCompat="@drawable/ic_launcher_foreground"
             tools:srcCompat="@drawable/ic_launcher_foreground" />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-80dp"
-            android:layout_marginTop="150dp"
-            android:layout_width="200dp"
-            android:max="100"
-            android:min="20"
-            android:progress="100"
-            android:secondaryProgress="100"
-            android:rotation="-90"/>
     </FrameLayout>
 
+    <SeekBar
+        android:id="@+id/seekBar"
+        app:layout_constraintRight_toLeftOf="@+id/rightLayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/grey_transparent"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:max="100"
+        android:min="20"
+        android:progress="100"
+        android:secondaryProgress="100"
+        android:rotation="-90"/>
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/rightLayer"
+        android:layout_width="400dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/grey_transparent"
